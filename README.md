@@ -6,15 +6,11 @@ An intelligent web application built with Python and Flask to provide data-drive
 
 ## Screenshots
 
-*(It's highly recommended to add screenshots of your application here. You can do this by taking screenshots, adding them to a folder like `screenshots/` in your project, and then linking them like this: `![Landing Page](screenshots/landing.png)`)*
-
 **Landing Page**
-_Your landing page screenshot here_
 
 ![alt text](<Screenshot (354).png>)
 
 **Analysis Results Page**
-_Your results page screenshot here_
 
 ![alt text](<Screenshot (355).png>)
 
