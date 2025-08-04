@@ -1,0 +1,14 @@
+# Virtual Environment
+venv/
+__pycache__/
+
+# User-uploaded files
+uploads/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files (optional but good practice)
+.idea/
+.vscode/
