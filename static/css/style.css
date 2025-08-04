@@ -1,0 +1,87 @@
+/* static/css/style.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.hero-section {
+    /* The light overlay to make the background image brighter */
+    background: linear-gradient(rgba(240, 255, 240, 0.6), rgba(240, 255, 240, 0.6)), url('../images/hero-bg.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    color: #333;
+}
+
+.btn-success {
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.btn-success:hover {
+    background-color: #157347;
+    border-color: #146c43;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+/* Styles for the Results Page cards */
+.analysis-card, .crop-card {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: all 0.3s ease-in-out;
+}
+
+.analysis-card:hover, .crop-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.data-row:last-child {
+    border-bottom: none;
+}
+
+.data-row span:first-child {
+    color: #6c757d; /* Muted text color for labels */
+}
+
+.rank-badge {
+    background-color: #e9f5ea; /* A light green */
+    color: #198754; /* Success green */
+    padding: 0.25em 0.6em;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 0.25rem;
+}
+
+.crop-card .card-footer {
+    border-top: 1px solid #e9ecef;
+}
+
+/* --- NEW --- */
+/* Custom background for the results page */
+.results-page-bg {
+    background-color: #F5FBF7;
+}

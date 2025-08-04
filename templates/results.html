@@ -1,0 +1,90 @@
+<!-- templates/results.html -->
+
+{% extends 'base.html' %}
+
+{% block body_class %}results-page-bg{% endblock %} <!-- <-- ADDED THIS LINE -->
+
+{% block title %}Analysis Results{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <a href="{{ url_for('index') }}" class="text-muted text-decoration-none d-block mb-2">← Back to Home</a>
+        <h2 class="fw-bolder">Analysis Results</h2>
+        <p class="text-muted">Based on your soil and location data</p>
+    </div>
+
+    <!-- Analysis Cards -->
+    <div class="row g-4 mb-5">
+        <!-- Soil Analysis Card -->
+        <div class="col-md-6">
+            <div class="card analysis-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold mb-3">Soil Analysis</h5>
+                    <div class="data-row"><span>Soil Type:</span><span class="fw-bold">{{
+                            recommendations.soil_analysis.soil_type }}</span></div>
+                    <div class="data-row"><span>Confidence:</span><span class="fw-bold">{{
+                            recommendations.soil_analysis.confidence }}%</span></div>
+                    <div class="data-row"><span>Location:</span><span class="fw-bold">{{
+                            recommendations.soil_analysis.location }}</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Conditions Card -->
+        <div class="col-md-6">
+            <div class="card analysis-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold mb-3">Weather Conditions</h5>
+                    <div class="data-row"><span>Temperature:</span><span class="fw-bold">{{
+                            recommendations.weather_conditions.temperature }}</span></div>
+                    <div class="data-row"><span>Humidity:</span><span class="fw-bold">{{
+                            recommendations.weather_conditions.humidity }}</span></div>
+                    <div class="data-row"><span>Season:</span><span class="fw-bold">{{
+                            recommendations.weather_conditions.season }}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommended Crops Section -->
+    <div class="mb-4">
+        <h4 class="fw-bold">Recommended Crops</h4>
+        <p class="text-muted">Top 3 crops based on your conditions</p>
+    </div>
+
+    <div class="row g-4">
+        {% for crop in recommendations.recommended_crops %}
+        <div class="col-lg-4 d-flex align-items-stretch">
+            <div class="card crop-card w-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h5 class="card-title fw-bolder">{{ crop.name }}</h5>
+                        <span class="rank-badge">#{{ loop.index }}</span>
+                    </div>
+                    <div class="data-row"><span>Suitability:</span><span class="fw-bold text-success">{{
+                            crop.suitability }}%</span></div>
+                    <div class="data-row"><span>Market Price:</span><span class="fw-bold">{{ crop.market_price }}</span>
+                    </div>
+                    <div class="data-row"><span>Demand:</span><span class="fw-bold text-primary">{{ crop.demand
+                            }}</span></div>
+                    <div class="data-row"><span>Profitability:</span><span class="fw-bold">{{ crop.profitability
+                            }}%</span></div>
+                    <div class="data-row"><span>Season:</span><span class="fw-bold">{{ crop.season }}</span></div>
+                </div>
+                <div class="card-footer bg-light">
+                    <small class="text-muted">{{ crop.match_reason }}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="text-center mt-5">
+        <a href="{{ url_for('analyze') }}" class="btn btn-success btn-lg px-4 me-2">Analyze Another Farm</a>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary btn-lg px-4">Back to Home</a>
+    </div>
+
+</div>
+{% endblock %}

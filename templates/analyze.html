@@ -1,0 +1,92 @@
+<!-- templates/analyze.html -->
+{% extends 'base.html' %}
+
+{% block title %}Crop Analysis{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <a href="{{ url_for('index') }}" class="text-muted text-decoration-none">← Back to Home</a>
+                        <h2 class="fw-bold mt-2">Crop Analysis</h2>
+                        <p class="text-muted">Upload your soil image and provide farm details for personalized crop recommendations.</p>
+                    </div>
+
+                    <!-- Flash Messages -->
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+
+                    <form action="{{ url_for('analyze') }}" method="post" enctype="multipart/form-data">
+                        <!-- Soil Image Upload -->
+                        <div class="mb-4 text-center">
+                            <label for="soil-image" class="form-label fw-bold">Soil Image *</label>
+                            <div class="border rounded p-4" style="cursor: pointer;" onclick="document.getElementById('soil-image').click();">
+                                <i class="bi bi-cloud-upload fs-1"></i>
+                                <p id="file-upload-filename">Click to upload soil image</p>
+                            </div>
+                            <input type="file" name="soil-image" id="soil-image" class="d-none" required>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="mb-3">
+                            <label for="location" class="form-label fw-bold">Location *</label>
+                            <input type="text" class="form-control" id="location" name="location" placeholder="e.g., New Delhi, India" required>
+                        </div>
+                        
+                        <!-- Water Source -->
+                        <div class="mb-3">
+                            <label for="water-source" class="form-label fw-bold">Water Source *</label>
+                            <select class="form-select" id="water-source" name="water-source" required>
+                                <option selected disabled value="">Select water source</option>
+                                <option value="well">Well</option>
+                                <option value="canal">Canal</option>
+                                <option value="rainfed">Rain-fed</option>
+                                <option value="borewell">Borewell</option>
+                            </select>
+                        </div>
+
+                        <!-- Water Availability -->
+                        <div class="mb-3">
+                            <label for="water-availability" class="form-label fw-bold">Water Availability *</label>
+                            <select class="form-select" id="water-availability" name="water-availability" required>
+                                <option selected disabled value="">Select water availability</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+
+                        <!-- External Issues -->
+                        <div class="mb-4">
+                            <label for="external-issues" class="form-label fw-bold">External Issues (Optional)</label>
+                            <textarea class="form-control" id="external-issues" name="external-issues" rows="3" placeholder="e.g., pest problems, drought conditions, soil erosion..."></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">Analyze & Get Recommendations</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple script to show the selected filename
+    document.getElementById('soil-image').onchange = function () {
+        document.getElementById('file-upload-filename').textContent = this.files[0].name;
+    };
+</script>
+{% endblock %}
